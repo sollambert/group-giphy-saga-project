@@ -13,6 +13,24 @@ import logger from 'redux-logger';
 import createSagaMiddleware from '@redux-saga/core';
 import { takeEvery, put } from 'redux-saga/effects';
 
+
+function* getSearch(action) {
+    const params = {
+        q : action.payload
+    }
+
+    try {
+        let response = yield axios.get('/api/search', {params} )
+
+        yield put ({
+            type : 'SET_GALLERY',
+            payload : response.data
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 //gallery reducer
 function galleryGifs(state = [], action) {
     switch(action.type) {
@@ -57,6 +75,7 @@ function* deleteGifs(action) {
 }
 
 function* watcherSaga() {
+    yield takeEvery('GET_SEARCH', getSearch)
     yield takeEvery("GET_FAVORITES", getFavorites);
     yield takeEvery("GET_CATEGORY", getCategory);
     yield takeEvery('DELETE_GIFS', deleteGifs)
