@@ -19,10 +19,10 @@ function GifList() {
     }
 
     return (
-        <div id='gif-list'>
+        <div className='gif-list'>
         <h3>Favorites Go Here 👇</h3>
         {gif.map(gif => {
-            return <GifItem id={gif.id}/>
+            return <GifItem key={gif.id} gif={gif}/>
         })}
         
         </div>

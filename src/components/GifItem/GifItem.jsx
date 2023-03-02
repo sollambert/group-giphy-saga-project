@@ -1,9 +1,9 @@
 import React from 'react';
 
-function GifItem(id) {
+function GifItem({gif}) {
 
     return (
-        <div id='gif-item'>
+        <div className='gif-item'>
         <img src={gif.url} />
         </div>
 
