@@ -41,11 +41,23 @@ function galleryGifs(state = [], action) {
 	}
 }
 
+//categories reducer
+function categories(state = [], action) {
+	switch (action.type) {
+		case "SET_CATEGORIES":
+			return action.payload;
+		case "CLEAR_CATEGORIES":
+			return action.payload;
+		default:
+			return state;
+	}
+}
+
 //get favorites saga
 function* getFavorites() {
 	try {
 		let response = yield axios.get("/api/favorite");
-		put({ type: "SET_GALLERY", payload: response.data });
+		yield put({ type: "SET_GALLERY", payload: response.data });
 	} catch (error) {
 		console.error(error);
 	}
@@ -57,7 +69,7 @@ function* getCategory(action) {
 		let response = yield axios.get("/api/category", {
 			category: action.payload,
 		});
-		put({ type: "SET_GALLERY", payload: response.data });
+		yield put({ type: "SET_CATEGORIES", payload: response.data });
 	} catch (error) {
 		console.error(error);
 	}
@@ -85,12 +97,29 @@ function* addCategory(action) {
 	}
 }
 
+// delete favorited gif
+function* deleteGifs(action) {
+	try {
+		yield axios.delete(`/api/favorite/${action.payload}`);
+		console.log("in delete axios", action.payload);
+		yield put({ type: "GET_FAVORITES" });
+	} catch (error) {
+		console.error("error deleting gif", error);
+	}
+}
+
 function* watcherSaga() {
+	// gets
 	yield takeEvery("GET_SEARCH", getSearch);
 	yield takeEvery("GET_FAVORITES", getFavorites);
 	yield takeEvery("GET_CATEGORY", getCategory);
+
+	// posts
 	yield takeEvery("ADD_FAVORITE", addFavorite);
 	yield takeEvery("ADD_CATEGORY", addCategory);
+
+	// deletes
+	yield takeEvery("DELETE_GIFS", deleteGifs);
 }
 
 const sagaMiddleware = createSagaMiddleware();
@@ -98,6 +127,7 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
 	combineReducers({
 		galleryGifs,
+		categories,
 	}),
 	applyMiddleware(sagaMiddleware, logger)
 );

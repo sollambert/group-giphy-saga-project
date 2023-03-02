@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
+import GifList from "../GifList/GifList";
 import Search from "../Search/Search";
-
 import Navbar from "../Navbar/Navbar";
 
 function App(props) {
@@ -13,7 +13,7 @@ function App(props) {
 					<Search />
 				</Route>
 				<Route exact path="/gallery">
-					<h1>Replace Gallery</h1>
+        <GifList />
 				</Route>
 			</Router>
 		</div>
