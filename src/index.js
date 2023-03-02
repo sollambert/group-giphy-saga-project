@@ -75,10 +75,22 @@ function* getCategory(action) {
     }
 }
 
+// delete favorited gif
+function* deleteGifs(action) {
+    try {
+      yield axios.delete(`/api/favorite/${action.payload}`);
+      console.log('in delete axios', action.payload)
+      yield put({ type: 'GET_FAVORITES' });
+    } catch (error) {
+      console.error('error deleting gif', error);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery('GET_SEARCH', getSearch)
     yield takeEvery("GET_FAVORITES", getFavorites);
     yield takeEvery("GET_CATEGORY", getCategory);
+    yield takeEvery('DELETE_GIFS', deleteGifs)
 }
 
 const sagaMiddleware = createSagaMiddleware();
