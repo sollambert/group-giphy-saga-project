@@ -28,7 +28,7 @@ function galleryGifs(state = [], action) {
 //get favorites saga
 function* getFavorites() {
     try {
-        let response = yield axios.get('/favorite');
+        let response = yield axios.get('/api/favorite');
         put({type: "SET_GALLERY", payload: response.data})
     } catch (error) {
         console.error(error);
@@ -38,16 +38,28 @@ function* getFavorites() {
 //get category saga
 function* getCategory(action) {
     try {
-        let response = yield axios.get('/category', { category: action.payload });
+        let response = yield axios.get('/api/category', { category: action.payload });
         put({type: "SET_GALLERY", payload: response.data})
     } catch (error) {
         console.error(error);
     }
 }
 
+// delete favorited gif
+function* deleteGifs(action) {
+    try {
+      yield axios.delete(`/api/favorite/${action.payload}`);
+      console.log('in delete axios', action.payload)
+      yield put({ type: 'GET_FAVORITES' });
+    } catch (error) {
+      console.error('error deleting gif', error);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery("GET_FAVORITES", getFavorites);
     yield takeEvery("GET_CATEGORY", getCategory);
+    yield takeEvery('DELETE_GIFS', deleteGifs)
 }
 
 const sagaMiddleware = createSagaMiddleware();
