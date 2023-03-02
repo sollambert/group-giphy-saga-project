@@ -69,7 +69,7 @@ function* getFavorites() {
 function* getCategory(action) {
     try {
         let response = yield axios.get('/category', { category: action.payload });
-        put({type: "SET_CATEGORIES", payload: response.data})
+        yield put({type: "SET_CATEGORIES", payload: response.data})
     } catch (error) {
         console.error(error);
     }
