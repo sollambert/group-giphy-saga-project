@@ -75,11 +75,9 @@ function* getFavorites() {
 }
 
 //get category saga
-function* getCategory(action) {
+function* getCategory() {
 	try {
-		let response = yield axios.get("/api/category", {
-			category: action.payload,
-		});
+		let response = yield axios.get("/api/category");
 		yield put({ type: "SET_CATEGORIES", payload: response.data });
 	} catch (error) {
 		console.error(error);
