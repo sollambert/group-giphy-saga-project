@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import GifItem from '../GifItem/GifItem';
 
 function GifList() {
     const dispatch = useDispatch();
