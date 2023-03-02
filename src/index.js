@@ -18,19 +18,29 @@ function* getSearch(action) {
     const params = {
         q : action.payload
     }
-
     try {
         let response = yield axios.get('/api/search', {params} )
-
         yield put ({
-            type : 'SET_GALLERY',
-            payload : response.data
+            type : 'SET_FOUND',
+            payload : response.data.data
         })
-
     } catch (error) {
         console.log(error);
     }
 }
+
+//found Gifs from search reducer
+function foundGifs(state = [], action) {
+    switch(action.type) {
+        case "SET_FOUND":
+            return action.payload;
+        case "CLEAR_FOUND":
+            return [];
+        default:
+            return state;
+    }
+}
+
 //gallery reducer
 function galleryGifs(state = [], action) {
     switch(action.type) {
@@ -97,6 +107,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
     combineReducers({
+        foundGifs,
         galleryGifs,
         categories
     }),
