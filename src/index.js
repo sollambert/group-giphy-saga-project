@@ -58,7 +58,7 @@ function categories(state = [], action) {
 //get favorites saga
 function* getFavorites() {
     try {
-        let response = yield axios.get('/favorite');
+        let response = yield axios.get('/api/favorite');
         yield put({type: "SET_GALLERY", payload: response.data})
     } catch (error) {
         console.error(error);
@@ -68,7 +68,7 @@ function* getFavorites() {
 //get category saga
 function* getCategory(action) {
     try {
-        let response = yield axios.get('/category', { category: action.payload });
+        let response = yield axios.get('/api/category', { category: action.payload });
         yield put({type: "SET_CATEGORIES", payload: response.data})
     } catch (error) {
         console.error(error);
