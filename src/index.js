@@ -15,9 +15,6 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 
 function* getSearch(action) {
-
-    console.log('action', action)
-
     const params = {
         q : action.payload
     }
