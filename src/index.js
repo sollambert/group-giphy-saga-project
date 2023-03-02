@@ -25,6 +25,18 @@ function galleryGifs(state = [], action) {
     }
 }
 
+//categories reducer
+function categories(state = [], action) {
+    switch(action.type) {
+        case "SET_CATEGORIES":
+            return action.payload;
+        case "CLEAR_CATEGORIES":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 //get favorites saga
 function* getFavorites() {
     try {
@@ -39,7 +51,7 @@ function* getFavorites() {
 function* getCategory(action) {
     try {
         let response = yield axios.get('/category', { category: action.payload });
-        put({type: "SET_GALLERY", payload: response.data})
+        put({type: "SET_CATEGORIES", payload: response.data})
     } catch (error) {
         console.error(error);
     }
@@ -54,7 +66,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
     combineReducers({
-        galleryGifs
+        galleryGifs,
+        categories
     }),
     applyMiddleware(sagaMiddleware, logger)
 )
