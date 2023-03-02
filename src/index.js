@@ -65,9 +65,10 @@ function categories(state = [], action) {
 }
 
 //get favorites saga
-function* getFavorites() {
+function* getFavorites(action) {
 	try {
-		let response = yield axios.get("/api/favorite");
+        let params = {category: action.payload ? action.payload : undefined}
+		let response = yield axios.get("/api/favorite", {params});
 		yield put({ type: "SET_GALLERY", payload: response.data });
 	} catch (error) {
 		console.error(error);
@@ -124,6 +125,7 @@ function* watcherSaga() {
 	yield takeEvery("GET_SEARCH", getSearch);
 	yield takeEvery("GET_FAVORITES", getFavorites);
 	yield takeEvery("GET_CATEGORY", getCategory);
+	yield takeEvery("GET_BY_CATEGORY", getFavorites);
 
 	// posts
 	yield takeEvery("ADD_FAVORITE", addFavorite);
