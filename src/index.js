@@ -67,8 +67,8 @@ function categories(state = [], action) {
 //get favorites saga
 function* getFavorites(action) {
 	try {
-        let params = {category: action.payload ? action.payload : undefined}
-		let response = yield axios.get("/api/favorite", {params});
+		let params = { category: action.payload ? action.payload : undefined };
+		let response = yield axios.get("/api/favorite", { params });
 		yield put({ type: "SET_GALLERY", payload: response.data });
 	} catch (error) {
 		console.error(error);

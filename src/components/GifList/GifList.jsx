@@ -20,12 +20,10 @@ function GifList() {
 	const handleCategoryFilter = (e) => {
 		const filterValue = e.target.value;
 
-		if (filterValue) {
-			dispatch({
-				type: "GET_CATEGORY",
-				payload: filterValue,
-			});
-		}
+		dispatch({
+			type: "GET_BY_CATEGORY",
+			payload: filterValue,
+		});
 	};
 
 	const handleAddNewCategory = () => {
