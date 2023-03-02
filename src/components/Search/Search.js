@@ -4,16 +4,10 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Search() {
-
     let [newSearch, setNewSearch] = useState ('')
-
     const dispatch = useDispatch();
-
-    console.log('search:', newSearch);
-
+    
     const handleClick = () => {
-        console.log('Handling Search');
-
         dispatch({
             type : 'GET_SEARCH',
             payload : newSearch
