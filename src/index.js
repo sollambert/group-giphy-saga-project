@@ -27,7 +27,7 @@ function* getSearch(action) {
 
         yield put ({
             type : 'SET_GALLERY',
-            payload : response?.data
+            payload : response.data
         })
 
     } catch (error) {
