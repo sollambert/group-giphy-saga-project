@@ -22,7 +22,7 @@ const store = createStore(
     combineReducers({
 
     }),
-    applyMiddleware(sagaMiddleware, logger);
+    applyMiddleware(sagaMiddleware, logger)
 )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
