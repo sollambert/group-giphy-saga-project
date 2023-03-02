@@ -59,7 +59,7 @@ function categories(state = [], action) {
 function* getFavorites() {
     try {
         let response = yield axios.get('/favorite');
-        put({type: "SET_GALLERY", payload: response.data})
+        yield put({type: "SET_GALLERY", payload: response.data})
     } catch (error) {
         console.error(error);
     }
