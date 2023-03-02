@@ -10,7 +10,7 @@ function App(props) {
 			<Router>
 				<Navbar />
 				<Route exact path="/">
-					< Search />
+					<Search />
 				</Route>
 				<Route exact path="/gallery">
         <GifList />
