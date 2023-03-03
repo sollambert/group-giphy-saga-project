@@ -30,5 +30,8 @@
     height: auto;
     margin-left: 25%;
     margin-right: 25%;
+    background-color: #d61c1c; 
+    border: none;
+    color: white;
 }
 
