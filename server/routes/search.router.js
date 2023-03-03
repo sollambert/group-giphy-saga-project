@@ -12,8 +12,6 @@ require('dotenv').config();
 router.get('/', (req, res) => {
 
     req.query.api_key = process.env.GIPHY_API_KEY;
-    req.query.offset = 0;
-    req.query.limit = 10;
 
     let params = req.query;
 
@@ -21,8 +19,7 @@ router.get('/', (req, res) => {
 
     axios.get(`https://api.giphy.com/v1/gifs/search`, {params})
         .then(response => {
-            // console.log(response.data);
-            res.send(response.data);
+            res.send({data: response.data, pagination: response.pagination});
         })
         .catch(err => {
             console.log(err);

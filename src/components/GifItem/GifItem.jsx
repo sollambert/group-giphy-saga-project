@@ -1,6 +1,7 @@
 import "./GitItem.css";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./GifItem.css";
 
 function GifItem({ gif }) {
 	const dispatch = useDispatch();
@@ -13,6 +14,10 @@ function GifItem({ gif }) {
 	const handleAddCategoryToFav = (e) => {
 		const linkIds = { category_id: Number(e.target.value), gif_id: gif.id };
 		dispatch({ type: "ADD_CATEGORY_TO_FAVORITE", payload: linkIds });
+	};
+
+	const deleteGifs = (id) => {
+		dispatch({ type: "DELETE_GIFS", payload: id });
 	};
 
 	return (
@@ -43,6 +48,12 @@ function GifItem({ gif }) {
 					);
 				})}
 			</select>
+			<button
+				className="delete-button"
+				onClick={() => deleteGifs(gif.id)}
+			>
+				X
+			</button>
 		</div>
 	);
 }

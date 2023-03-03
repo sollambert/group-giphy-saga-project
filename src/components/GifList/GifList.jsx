@@ -2,6 +2,7 @@ import "./GitList.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GifItem from "../GifItem/GifItem";
+import "./GifList.css";
 
 function GifList() {
 	const dispatch = useDispatch();
@@ -50,14 +51,17 @@ function GifList() {
 				})}
 			</select>
 			<input
+				className="add-new-category__input"
 				type="text"
 				placeholder="Add New Category"
 				onChange={(e) => setNewCategoryInput(e.target.value)}
 				value={newCategoryInput}
 			/>
-			<button onClick={handleAddNewCategory}>Add</button>
+			<button onClick={handleAddNewCategory} className="add-button">
+				Add
+			</button>
 
-			<h3>Favorites Go Here 👇</h3>
+			<h1>Favorites Go Here 👇</h1>
 			<section className="favorited-gif__section">
 				{gif.map((gif, i) => {
 					return <GifItem key={i} gif={gif} />;

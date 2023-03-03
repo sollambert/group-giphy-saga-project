@@ -4,28 +4,39 @@ import FoundGifItem from "../FoundGif/FoundGif";
 import "./FoundList.css";
 
 function FoundList() {
-	const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-	const foundGifList = useSelector((store) => store.foundGifs);
+    const foundGifList = useSelector(store => store.foundGifs);
+    const search = useSelector(store => store.searchReducer)
 
-	useEffect(() => {
-		console.log("component did mount");
-		dispatch({
-			type: "GET_SEARCH",
-			payload: "Bruce Willis",
-		});
-	}, []);
+    useEffect(() => {
+        console.log('component did mount');
+        dispatch({
+            type: 'GET_SEARCH'
+        })
+    }, []);
 
-	return (
-		<>
-			<h3>Found Gifs:</h3>
-			<section className="found-gif-grid">
-				{foundGifList.map((item) => {
-					return <FoundGifItem key={item?.id} item={item} />;
-				})}
-			</section>
-		</>
-	);
+    return (
+        <>
+            <h3 className='found-gifs-style'>Found Gifs:</h3>
+
+            <section className='found-gif-grid'>
+                {foundGifList.map(item => {
+                    return (
+                        < FoundGifItem key={item?.id} item={item} />
+                    )
+                })}
+                <footer className='back-next-buttons'>
+                    <button disabled={search.offset <= 0 ? "true" : ''} onClick={() => {
+                        dispatch({ type: "UPDATE_OFFSET", payload: search.offset - 9 });
+                    }}>Prev 9</button>
+                    <button onClick={() => {
+                        dispatch({ type: "UPDATE_OFFSET", payload: search.offset + 9 });
+                    }}>Next 9</button>
+                </footer>
+            </section>
+        </>
+    )
 }
 
 export default FoundList;

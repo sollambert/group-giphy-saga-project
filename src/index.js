@@ -11,18 +11,46 @@ import logger from "redux-logger";
 
 //sagas
 import createSagaMiddleware from "@redux-saga/core";
-import { takeEvery, put } from "redux-saga/effects";
+import { takeEvery, put, select } from "redux-saga/effects";
 
+//search selector
+const searchSelector = (state) => state.searchReducer;
+
+//search reducer
+function searchReducer(state = {q: "Bruce Willis", limit: 9, offset: 0, rating: 'r'}, action) {
+	switch(action.type) {
+		case "UPDATE_SEARCH":
+			console.log("IN SEARCH REDUCER",state, action.payload)
+			return {...state, ...action.payload};
+		default:
+			return state;
+	}
+}
+
+//offset updater
+function* updateOffset(action) {
+    try {
+        yield put({type: "UPDATE_SEARCH", payload: {offset: action.payload}})
+		yield put({type: "GET_SEARCH"});
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//search worker
 function* getSearch(action) {
-	const params = {
-		q: action.payload,
-	};
+	yield put({type: "UPDATE_SEARCH", payload: action.payload})
+	console.log(action.payload)
+	const params = yield select(searchSelector);
 	try {
 		let response = yield axios.get("/api/search", { params });
+		yield put({type: "UPDATE_SEARCH", payload: {offset: response.data.data.pagination.offset}})
+		console.log(response.data.data.pagination)
 		yield put({
 			type: "SET_FOUND",
-			payload: response.data.data,
+			payload: response.data.data.data,
 		});
+		action.callback ? action.callback() : '';
 	} catch (error) {
 		console.log(error);
 	}
@@ -143,6 +171,8 @@ function* addCategoryToFavorite(action) {
 }
 
 function* watcherSaga() {
+    yield takeEvery("UPDATE_OFFSET", updateOffset)
+
 	// gets
 	yield takeEvery("GET_SEARCH", getSearch);
 	yield takeEvery("GET_FAVORITES", getFavorites);
@@ -165,6 +195,7 @@ const store = createStore(
 		foundGifs,
 		galleryGifs,
 		categories,
+		searchReducer,
 	}),
 	applyMiddleware(sagaMiddleware, logger)
 );
