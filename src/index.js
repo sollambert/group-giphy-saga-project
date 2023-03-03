@@ -50,6 +50,7 @@ function* getSearch(action) {
 			type: "SET_FOUND",
 			payload: response.data.data.data,
 		});
+		action.callback ? action.callback() : '';
 	} catch (error) {
 		console.log(error);
 	}
