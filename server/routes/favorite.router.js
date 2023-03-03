@@ -40,17 +40,15 @@ router.post("/", (req, res) => {
 });
 
 // update given favorite with a category id
-router.put("/:favId", (req, res) => {
+router.post("/:favId", (req, res) => {
 	// req.body should contain a category_id to add to this favorite image
 	console.log(req.body);
 
 	const queryText = `
-	UPDATE "categories_gifs" 
-	SET category_id = "categories".id
-	FROM "categories"
-	WHERE "categories".name = $1 AND gif_id = $2;
+	INSERT INTO "categories_gifs" ("category_id", "gif_id")
+	VALUES ($1, $2);
 	`
-	pool.query(queryText, [req.body])
+	pool.query(queryText, [req.body.category.id, req.body.gif.id])
 		.then(() => {
 			res.sendStatus(201);
 		})
