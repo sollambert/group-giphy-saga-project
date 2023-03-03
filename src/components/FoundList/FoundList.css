@@ -1,11 +1,8 @@
-    .found-gif-grid {
-        display:grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 5%;
-        row-gap: 5%;
-        margin: 5%;
+.found-gif-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-
 
 .back-next-buttons {
     margin-bottom: 2em;

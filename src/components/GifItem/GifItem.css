@@ -1,0 +1,53 @@
+.gif-item {
+    width: 30vw;
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-radius: 5px;
+    margin-right: .5em;
+    margin-left: .5em;
+    margin-top: .25em;
+    margin-bottom: .25em;
+}
+
+.gif-item__image {
+	width: 100%;
+	object-fit: contain;
+}
+
+.current-category__list {
+	list-style: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.current-category__item {
+	border-radius: 5px;
+	margin: 3px;
+	border: 2px solid black;
+	padding: 2px 5px;
+	display: inline-block;
+	color: black;
+	background-color: #f0f0f0;
+}
+
+.gif-card-divider {
+	width: 90%;
+	height: 2px;
+	background-color: lightgray;
+	margin: 15px 0;
+}
+
+.add-new-category-dropdown {
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.delete-button {
+	background-color: #d61c1c;
+	border: none;
+	color: white;
+	padding: 5px 10px;
+	display: inline-block;
+}
