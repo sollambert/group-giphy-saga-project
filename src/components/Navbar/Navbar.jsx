@@ -27,7 +27,7 @@ function Navbar() {
 						className="navbar__gallery-btn"
 						onClick={handleGoToGalleryPage}
 					>
-						Gallery
+						Favorites
 					</button>
 				</div>
 			</nav>

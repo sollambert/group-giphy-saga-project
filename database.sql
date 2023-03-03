@@ -22,7 +22,7 @@ VALUES ('https://media1.giphy.com/media/orW0tBsQHr4WzfYmOG/giphy.gif?cid=dad12ee
 CREATE TABLE "categories_gifs" (
 	"id" SERIAL PRIMARY KEY,
 	"category_id" INT REFERENCES "categories",
-	"gif_id" INT REFERENCES "gifs"
+	"gif_id" INT REFERENCES "gifs" ON DELETE CASCADE
 );
 
 INSERT INTO "categories_gifs" ("category_id", "gif_id")
