@@ -6,7 +6,7 @@ function FoundGifItem (item) {
 
     const dispatch = useDispatch();
 
-    console.log('gif item', item?.item?.original?.url);
+    // console.log('gif item', item?.item?.original?.url);
 
 
     const handleClick = () => {
