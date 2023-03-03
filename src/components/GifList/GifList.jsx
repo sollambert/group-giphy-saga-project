@@ -57,8 +57,8 @@ function GifList() {
 			<button onClick={handleAddNewCategory}>Add</button>
 
 			<h3>Favorites Go Here 👇</h3>
-			{gif.map((gif) => {
-				return <GifItem key={gif.id} gif={gif} />;
+			{gif.map((gif, i) => {
+				return <GifItem key={i} gif={gif} />;
 			})}
 		</div>
 	);
