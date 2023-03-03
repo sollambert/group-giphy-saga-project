@@ -21,7 +21,7 @@ function FoundGifItem(item) {
 				></img>
 			}
 			<div>
-				<button onClick={handleClick}>Favorite</button>
+				<button onClick={handleClick}>Add to Favorites</button>
 			</div>
 		</div>
 	);
