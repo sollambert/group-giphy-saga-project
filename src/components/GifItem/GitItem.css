@@ -1,0 +1,39 @@
+.gif-item {
+	width: 500px;
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.gif-item__image {
+	width: 100%;
+	object-fit: contain;
+}
+
+.current-category__list {
+	list-style: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.current-category__item {
+	border-radius: 5px;
+	margin: 3px;
+	border: 2px solid black;
+	padding: 2px 5px;
+	display: inline-block;
+	color: black;
+}
+
+.gif-card-divider {
+	width: 90%;
+	height: 2px;
+	background-color: lightgray;
+	margin: 15px 0;
+}
+
+.add-new-category-dropdown {
+	padding: 5px 10px;
+	border-radius: 5px;
+}

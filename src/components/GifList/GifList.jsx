@@ -1,3 +1,4 @@
+import "./GitList.css";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GifItem from "../GifItem/GifItem";
@@ -38,12 +39,12 @@ function GifList() {
 				onChange={handleCategoryFilter}
 			>
 				<option key="null" value="">
-					Filter By Category
+					FILTER BY CATEGORY
 				</option>
 				{categories.map(({ id, name }) => {
 					return (
 						<option key={id} value={name}>
-							{name}
+							{name.toUpperCase()}
 						</option>
 					);
 				})}
@@ -57,9 +58,11 @@ function GifList() {
 			<button onClick={handleAddNewCategory}>Add</button>
 
 			<h3>Favorites Go Here 👇</h3>
-			{gif.map((gif, i) => {
-				return <GifItem key={i} gif={gif} />;
-			})}
+			<section className="favorited-gif__section">
+				{gif.map((gif, i) => {
+					return <GifItem key={i} gif={gif} />;
+				})}
+			</section>
 		</div>
 	);
 }
