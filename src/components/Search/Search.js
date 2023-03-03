@@ -10,7 +10,7 @@ function Search() {
     const handleClick = () => {
         dispatch({
             type : 'GET_SEARCH',
-            payload : newSearch
+            payload : {q: newSearch}
         })
     }
 
