@@ -1,0 +1,16 @@
+.gif-item {
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.gif-image {
+    width : 75%;
+    height: auto;
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+.add-new-category-dropdown {
+    margin-left : 15%;
+    margin-bottom : 20%;
+}

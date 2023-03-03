@@ -62,7 +62,7 @@ router.post("/:gifId", (req, res) => {
 });
 
 // delete a favorite
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
 	const queryText = 'DELETE FROM gifs WHERE id=$1';
   	pool.query(queryText, [req.params.id])
     .then(() => { res.sendStatus(200); })

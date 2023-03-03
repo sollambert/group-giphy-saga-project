@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./GifItem.css"
 
 function GifItem({ gif }) {
 	const dispatch = useDispatch();
@@ -16,7 +17,9 @@ function GifItem({ gif }) {
 
 	return (
 		<div className="gif-item">
-			<img src={gif.url} />
+			<div>
+				<img className='gif-image' src={gif.url} />
+			</div>
 			<select
 				className="add-new-category-dropdown"
 				onChange={handleAddCategoryToFav}
