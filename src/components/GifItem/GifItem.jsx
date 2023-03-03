@@ -14,6 +14,10 @@ function GifItem({ gif }) {
 		dispatch({ type: "ADD_CATEGORY_TO_FAVORITE", payload: linkIds });
 	};
 
+	const deleteGifs = (id) => {
+		dispatch({type: 'DELETE_GIFS', payload: id})
+	}
+
 	return (
 		<div className="gif-item">
 			<img src={gif.url} />
@@ -32,6 +36,7 @@ function GifItem({ gif }) {
 					);
 				})}
 			</select>
+			<button onClick={() => deleteGifs(gif.id)}> Delete </button>
 		</div>
 	);
 }

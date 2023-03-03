@@ -11,12 +11,20 @@ function FoundGifItem(item) {
 		});
 	};
 
-    return (
-        <div className = 'found-gif-item'>
-        {<img width='300px' height='auto' src={item?.item?.images?.original?.url}></img>}
-        <div><button onClick={handleClick}>Favorite</button></div>
-        </div>
-    )
+	return (
+		<div className="found-gif-item">
+			{
+				<img
+					width="300px"
+					height="auto"
+					src={item?.item?.images?.original?.url}
+				></img>
+			}
+			<div>
+				<button onClick={handleClick}>Add to Favorites</button>
+			</div>
+		</div>
+	);
 }
 
 export default FoundGifItem;
