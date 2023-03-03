@@ -1,0 +1,15 @@
+.favorites-go-here {
+    text-align: center;
+    font-size: 1.5em;
+    font-family: sans-serif;
+}
+
+
+.gif-list-style  {
+    display : grid;
+    grid-template-columns:  1fr 1fr 1fr ;
+    column-gap: 5%;
+    row-gap: 5%;
+    margin: 5%
+}
+

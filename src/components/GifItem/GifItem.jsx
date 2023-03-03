@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./GifItem.css"
 
 function GifItem({ gif }) {
 	const dispatch = useDispatch();
@@ -15,28 +16,34 @@ function GifItem({ gif }) {
 	};
 
 	const deleteGifs = (id) => {
-		dispatch({type: 'DELETE_GIFS', payload: id})
+		dispatch({ type: 'DELETE_GIFS', payload: id })
 	}
 
 	return (
 		<div className="gif-item">
-			<img src={gif.url} />
-			<select
-				className="add-new-category-dropdown"
-				onChange={handleAddCategoryToFav}
-			>
-				<option key="null" value="">
-					Add New Category
-				</option>
-				{categories.map(({ id, name }) => {
-					return (
-						<option key={id} value={id}>
-							{name}
-						</option>
-					);
-				})}
-			</select>
-			<button onClick={() => deleteGifs(gif.id)}> Delete </button>
+			<div>
+				<img className='gif-image' src={gif.url} />
+			</div>
+			<div className='dropdown-style'>
+				<select
+					className="add-new-category-dropdown"
+					onChange={handleAddCategoryToFav}
+				>
+					<option key="null" value="">
+						Add New Category
+					</option>
+					{categories.map(({ id, name }) => {
+						return (
+							<option key={id} value={id}>
+								{name}
+							</option>
+						);
+					})}
+				</select>
+			</div>
+			<div>
+				<button className='delete-button' onClick={() => deleteGifs(gif.id)}> Delete </button>
+			</div>
 		</div>
 	);
 }
