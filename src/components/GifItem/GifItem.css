@@ -1,6 +1,7 @@
 .gif-item {
-    background-color: lightblue;
+    background-color: black;
     border-radius: 10px;
+    padding : 5%;
 }
 
 .gif-image {
@@ -10,7 +11,25 @@
     margin-top: 15%;
 }
 
+.dropdown-style {
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+}
+
 .add-new-category-dropdown {
     margin-left : 15%;
-    margin-bottom : 20%;
+    margin-bottom : 10%;
+    width: 80%;
+    height: auto;
 }
+
+.delete-button {
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+

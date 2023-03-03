@@ -1,0 +1,13 @@
+.found-gif-item {
+    background-color: black;
+    border-radius: 10px;
+    padding: 5%;
+}
+
+.favorites-button-style {
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10%;
+}

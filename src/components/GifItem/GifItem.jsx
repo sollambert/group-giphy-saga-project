@@ -16,7 +16,7 @@ function GifItem({ gif }) {
 	};
 
 	const deleteGifs = (id) => {
-		dispatch({type: 'DELETE_GIFS', payload: id})
+		dispatch({ type: 'DELETE_GIFS', payload: id })
 	}
 
 	return (
@@ -24,22 +24,26 @@ function GifItem({ gif }) {
 			<div>
 				<img className='gif-image' src={gif.url} />
 			</div>
-			<select
-				className="add-new-category-dropdown"
-				onChange={handleAddCategoryToFav}
-			>
-				<option key="null" value="">
-					Add New Category
-				</option>
-				{categories.map(({ id, name }) => {
-					return (
-						<option key={id} value={id}>
-							{name}
-						</option>
-					);
-				})}
-			</select>
-			<button onClick={() => deleteGifs(gif.id)}> Delete </button>
+			<div className='dropdown-style'>
+				<select
+					className="add-new-category-dropdown"
+					onChange={handleAddCategoryToFav}
+				>
+					<option key="null" value="">
+						Add New Category
+					</option>
+					{categories.map(({ id, name }) => {
+						return (
+							<option key={id} value={id}>
+								{name}
+							</option>
+						);
+					})}
+				</select>
+			</div>
+			<div>
+				<button className='delete-button' onClick={() => deleteGifs(gif.id)}> Delete </button>
+			</div>
 		</div>
 	);
 }
