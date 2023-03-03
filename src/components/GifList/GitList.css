@@ -7,9 +7,9 @@
 }
 
 .favorited-gif__section {
-	display: grid;
-	grid-template-columns: repeat(3, 500px);
-	gap: 100px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .filter-category-dropdown {
