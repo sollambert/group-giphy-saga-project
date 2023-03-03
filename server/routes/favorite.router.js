@@ -52,24 +52,35 @@ router.post("/", (req, res) => {
 
 // update given favorite with a category id
 router.post("/:gifId", (req, res) => {
-	const queryText = `
-		INSERT INTO "categories_gifs" ("category_id", "gif_id")
-		VALUES ($1, $2);
-    `;
-
 	const queryParams = [
 		req.body.category_id, // comes from post data
 		req.params.gifId, // comes from url
 	];
 
-	pool.query(queryText, queryParams)
-		.then(() => {
-			res.sendStatus(201);
-		})
-		.catch((error) => {
-			console.log(`Error POST category ${queryText}`, error);
-			res.sendStatus(500);
-		});
+	const checkText = `
+		SELECT * FROM "categories_gifs"
+		JOIN "categories" ON "categories".id = "categories_gifs".category_id
+		JOIN "gifs" ON "gifs".id = "categories_gifs".gif_id
+		WHERE "gifs".id = $2 AND "categories".id = $1;
+	`;
+
+	const queryText = `
+		INSERT INTO "categories_gifs" ("category_id", "gif_id")
+		VALUES ($1, $2);
+    `;
+
+	pool.query(checkText, queryParams).then((dbRes) => {
+		if (dbRes.rows.length === 0) {
+			pool.query(queryText, queryParams)
+				.then(() => {
+					res.sendStatus(201);
+				})
+				.catch((error) => {
+					console.log(`Error POST category ${queryText}`, error);
+					res.sendStatus(500);
+				});
+		}
+	});
 });
 
 // delete a favorite

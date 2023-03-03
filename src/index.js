@@ -97,10 +97,24 @@ function* getFavorites(action) {
 	try {
 		let params = { category: action.payload ? action.payload : undefined };
 		let response = yield axios.get("/api/favorite", { params });
-		yield put({ type: "SET_GALLERY", payload: response.data });
+		let favoritesWithCategories = yield getCategoriesOfFavorites(response);
+		yield put({ type: "SET_GALLERY", payload: favoritesWithCategories });
 	} catch (error) {
 		console.error(error);
 	}
+}
+
+//helper function for favorites getFavorites function
+async function getCategoriesOfFavorites(response) {
+	return await Promise.all(
+		response.data.map(async (gif) => {
+			const response = await axios.get(`api/category/${gif.id}`);
+			const categories = await response.data.reduce((array, category) => {
+				return [...array, Object.values(category)[0]];
+			}, []);
+			return { ...gif, categories };
+		})
+	);
 }
 
 //get category saga

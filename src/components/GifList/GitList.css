@@ -1,0 +1,13 @@
+.gif-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.favorited-gif__section {
+	display: grid;
+	grid-template-columns: repeat(3, 500px);
+	gap: 100px;
+}

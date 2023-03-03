@@ -16,6 +16,23 @@ router.get("/", (req, res) => {
 		});
 });
 
+router.get("/:id", (req, res) => {
+	const queryText = `
+		SELECT "categories".name FROM "categories_gifs"
+		JOIN "categories" ON "categories".id = "categories_gifs".category_id
+		WHERE "gif_id"=$1;
+	`;
+
+	pool.query(queryText, [req.params.id])
+		.then((result) => {
+			res.send(result.rows);
+		})
+		.catch((error) => {
+			console.log(`Error on query ${queryText}`);
+			res.sendStatus(500);
+		});
+});
+
 router.post("/", (req, res) => {
 	const queryText = `
     INSERT INTO "categories" ("name") VALUES ($1);
