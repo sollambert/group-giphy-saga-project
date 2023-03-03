@@ -32,7 +32,12 @@ router.post("/", (req, res) => {
   	`;
 	pool.query(selectText)
 		.then((dbRes) => {
-			if (!dbRes.rows.includes(req.body.url)) {
+			// console.log(dbRes.rows, { url: req.body.url })
+			if (dbRes.rows.filter((dbResUrl) => {
+				if (dbResUrl.url == req.body.url) {
+					return dbResUrl;
+				}
+			}).length == 0) {
 				pool.query(queryText, [req.body.url])
 					.then(() => {
 						res.sendStatus(201);
