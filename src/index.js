@@ -17,7 +17,7 @@ import { takeEvery, put, select } from "redux-saga/effects";
 const searchSelector = (state) => state.searchReducer;
 
 //search reducer
-function searchReducer(state = {q: "Bruce Willis", limit: 9, offset: 0}, action) {
+function searchReducer(state = {q: "Bruce Willis", limit: 9, offset: 0, rating: 'r'}, action) {
 	switch(action.type) {
 		case "UPDATE_SEARCH":
 			console.log("IN SEARCH REDUCER",state, action.payload)
