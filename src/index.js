@@ -118,6 +118,16 @@ function* deleteGifs(action) {
 	}
 }
 
+function* addCategoryToFavorite(action) {
+	const { gif_id, category_id } = action.payload;
+	try {
+		yield axios.post(`/api/favorite/${gif_id}`, { category_id });
+		yield put({ type: "GET_FAVORITES" });
+	} catch (error) {
+		console.log("Error addCategoryToFavorite", error);
+	}
+}
+
 function* watcherSaga() {
 	// gets
 	yield takeEvery("GET_SEARCH", getSearch);
@@ -128,6 +138,7 @@ function* watcherSaga() {
 	// posts
 	yield takeEvery("ADD_FAVORITE", addFavorite);
 	yield takeEvery("ADD_CATEGORY", addCategory);
+	yield takeEvery("ADD_CATEGORY_TO_FAVORITE", addCategoryToFavorite);
 
 	// deletes
 	yield takeEvery("DELETE_GIFS", deleteGifs);
