@@ -40,23 +40,25 @@ router.post("/", (req, res) => {
 });
 
 // update given favorite with a category id
-router.post("/:favId", (req, res) => {
-	// req.body should contain a category_id to add to this favorite image
-	console.log(req.body);
-
+router.post("/:gifId", (req, res) => {
 	const queryText = `
-	INSERT INTO "categories_gifs" ("category_id", "gif_id")
-	VALUES ($1, $2);
-	`
-	pool.query(queryText, [req.body.category.id, req.body.gif.id])
+		INSERT INTO "categories_gifs" ("category_id", "gif_id")
+		VALUES ($1, $2);
+    `;
+
+	const queryParams = [
+		req.body.category_id, // comes from post data
+		req.params.gifId, // comes from url
+	];
+
+	pool.query(queryText, queryParams)
 		.then(() => {
 			res.sendStatus(201);
 		})
 		.catch((error) => {
-			console.log(`Error PUT category ${queryText}`, error);
+			console.log(`Error POST category ${queryText}`, error);
+			res.sendStatus(500);
 		});
-
-	res.sendStatus(200);
 });
 
 // delete a favorite
