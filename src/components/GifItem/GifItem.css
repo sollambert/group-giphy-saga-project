@@ -12,7 +12,7 @@
 }
 
 .dropdown-style {
-    width: 50%;
+    width: 64%;
     height: auto;
     margin-left: 25%;
     margin-right: 25%;
@@ -20,7 +20,6 @@
 }
 
 .add-new-category-dropdown {
-    margin-left : 15%;
     margin-bottom : 10%;
     width: 80%;
     height: auto;
