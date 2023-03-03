@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import './Search.css'
 
 function Search() {
     let [newSearch, setNewSearch] = useState ('')
@@ -27,15 +28,13 @@ function Search() {
     }
 
     return (
-        <>
-            <div>
+        <div className="search-form">
+            <span>
                 <h1>Search: {search.q}</h1>
-            </div>
-            <div>
                 <input value={newSearch} onChange={handleSearchChange} type="text"/>
                 <button onClick={handleClick}>Search</button>
-            </div>
-        </>
+            </span>
+        </div>
     )
 }
 

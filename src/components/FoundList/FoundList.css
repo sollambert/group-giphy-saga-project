@@ -3,10 +3,14 @@
         grid-template-columns: 1fr 1fr 1fr;
         column-gap: 5%;
         row-gap: 5%;
-        margin: 5%
+        margin: 5%;
 }
 
 
+.back-next-buttons {
+    margin-bottom: 2em;
+    padding-bottom: 5%;
+}
 
 /* 
 * {
