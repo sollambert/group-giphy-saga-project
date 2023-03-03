@@ -11,3 +11,15 @@
 	grid-template-columns: repeat(3, 500px);
 	gap: 100px;
 }
+
+.filter-category-dropdown {
+	padding: 10px 15px;
+}
+
+.add-new-category__input {
+	padding: 10px 15px;
+}
+
+.add-button {
+	padding: 10px 15px;
+}

@@ -24,6 +24,7 @@
 	padding: 2px 5px;
 	display: inline-block;
 	color: black;
+	background-color: #f0f0f0;
 }
 
 .gif-card-divider {
@@ -36,4 +37,13 @@
 .add-new-category-dropdown {
 	padding: 5px 10px;
 	border-radius: 5px;
+	display: inline-block;
+}
+
+.delete-button {
+	background-color: #d61c1c;
+	border: none;
+	color: white;
+	padding: 5px 10px;
+	display: inline-block;
 }
