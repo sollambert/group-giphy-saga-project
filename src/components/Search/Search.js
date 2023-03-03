@@ -7,10 +7,18 @@ function Search() {
     let [newSearch, setNewSearch] = useState ('')
     const dispatch = useDispatch();
 
+    let search = useSelector(store => store.searchReducer);
+
+
+    const clearInput = () => {
+        setNewSearch('');
+    }
+
     const handleClick = () => {
         dispatch({
             type : 'GET_SEARCH',
-            payload : {q: newSearch}
+            payload : {q: newSearch, offset: 0},
+            callback : clearInput 
         })
     }
 
@@ -21,7 +29,7 @@ function Search() {
     return (
         <>
             <div>
-                {/* todo : Search IMAGE List  */}
+                <h1>Search: {search.q}</h1>
             </div>
             <div>
                 <input value={newSearch} onChange={handleSearchChange} type="text"/>
