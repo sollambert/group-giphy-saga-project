@@ -94,8 +94,8 @@ function categories(state = [], action) {
 //get favorites saga
 function* getFavorites(action) {
 	try {
-        let params = {category: action.payload ? action.payload : undefined}
-		let response = yield axios.get("/api/favorite", {params});
+		let params = { category: action.payload ? action.payload : undefined };
+		let response = yield axios.get("/api/favorite", { params });
 		yield put({ type: "SET_GALLERY", payload: response.data });
 	} catch (error) {
 		console.error(error);
@@ -103,11 +103,9 @@ function* getFavorites(action) {
 }
 
 //get category saga
-function* getCategory(action) {
+function* getCategory() {
 	try {
-		let response = yield axios.get("/api/category", {
-			category: action.payload,
-		});
+		let response = yield axios.get("/api/category");
 		yield put({ type: "SET_CATEGORIES", payload: response.data });
 	} catch (error) {
 		console.error(error);
@@ -147,6 +145,16 @@ function* deleteGifs(action) {
 	}
 }
 
+function* addCategoryToFavorite(action) {
+	const { gif_id, category_id } = action.payload;
+	try {
+		yield axios.post(`/api/favorite/${gif_id}`, { category_id });
+		yield put({ type: "GET_FAVORITES" });
+	} catch (error) {
+		console.log("Error addCategoryToFavorite", error);
+	}
+}
+
 function* watcherSaga() {
     yield takeEvery("UPDATE_OFFSET", updateOffset)
 
@@ -159,6 +167,7 @@ function* watcherSaga() {
 	// posts
 	yield takeEvery("ADD_FAVORITE", addFavorite);
 	yield takeEvery("ADD_CATEGORY", addCategory);
+	yield takeEvery("ADD_CATEGORY_TO_FAVORITE", addCategoryToFavorite);
 
 	// deletes
 	yield takeEvery("DELETE_GIFS", deleteGifs);

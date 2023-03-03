@@ -35,20 +35,41 @@ router.post("/", (req, res) => {
 		})
 		.catch((error) => {
 			console.log(`Error POST ${queryText}`, error);
+			res.sendStatus(500);
 		});
-
-	res.sendStatus(200);
 });
 
 // update given favorite with a category id
-router.put("/:favId", (req, res) => {
-	// req.body should contain a category_id to add to this favorite image
-	res.sendStatus(200);
+router.post("/:gifId", (req, res) => {
+	const queryText = `
+		INSERT INTO "categories_gifs" ("category_id", "gif_id")
+		VALUES ($1, $2);
+    `;
+
+	const queryParams = [
+		req.body.category_id, // comes from post data
+		req.params.gifId, // comes from url
+	];
+
+	pool.query(queryText, queryParams)
+		.then(() => {
+			res.sendStatus(201);
+		})
+		.catch((error) => {
+			console.log(`Error POST category ${queryText}`, error);
+			res.sendStatus(500);
+		});
 });
 
 // delete a favorite
 router.delete("/", (req, res) => {
-	res.sendStatus(200);
+	const queryText = 'DELETE FROM gifs WHERE id=$1';
+  	pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error completing DELETE gif query', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

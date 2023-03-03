@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import FoundGifItem from '../FoundGif/FoundGif';
-import './FoundList.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FoundGifItem from "../FoundGif/FoundGif";
+import "./FoundList.css";
 
 function FoundList() {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
     const foundGifList = useSelector(store => store.foundGifs);
     const search = useSelector(store => store.searchReducer)
