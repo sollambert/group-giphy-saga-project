@@ -20,6 +20,12 @@ function FoundList() {
         <>
             <h3 className='found-gifs-style'>Found Gifs:</h3>
 
+            <button disabled={search.offset <= 0 ? "true" : ''} onClick={() => {
+                        dispatch({ type: "UPDATE_OFFSET", payload: search.offset - 9 });
+                    }}>Prev 9</button>
+                    <button onClick={() => {
+                        dispatch({ type: "UPDATE_OFFSET", payload: search.offset + 9 });
+                    }}>Next 9</button>
             <section className='found-gif-grid'>
                 {foundGifList.map(item => {
                     return (

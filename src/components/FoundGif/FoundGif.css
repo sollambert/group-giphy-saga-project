@@ -1,7 +1,8 @@
 .found-gif-item {
     background-color: black;
     border-radius: 10px;
-    padding: 5%;
+    padding: 1%;
+    margin: .5em;
 }
 
 .favorites-button-style {
@@ -18,4 +19,8 @@
 
 .favorites-button-style:active {
     transform: scale(0.88);
+}
+
+.gif-image {
+    width: 28vw;
 }
